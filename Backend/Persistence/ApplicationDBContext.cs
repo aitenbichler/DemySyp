@@ -23,14 +23,6 @@ public class ApplicationDbContext : DbContext
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
     }
-/*
-    [ObsoleteAttribute("This is only used to generate ASP.net CRUD Page. Must not be used. Please use UOW instead.", true)]
-    public DbSet<MDemo>        Stations         { get; set; }
-    [ObsoleteAttribute("This is only used to generate ASP.net CRUD Page. Must not be used. Please use UOW instead.", true)]
-    public DbSet<FDemo>           Cities           { get; set; }
-    [ObsoleteAttribute("This is only used to generate ASP.net CRUD Page. Must not be used. Please use UOW instead.", true)]
-    public DbSet<DDemo>           Lines            { get; set; }
-*/
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

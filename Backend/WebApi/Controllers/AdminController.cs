@@ -22,18 +22,21 @@ using System.Threading.Tasks;
 [Route("[controller]")]
 public class AdminController : ControllerBase
 {
-    private readonly IUnitOfWork                _uow;
+    private readonly IUnitOfWork             _uow;
+    private readonly IImportService          _importService;
     private readonly ILogger<DemoController> _logger;
 
     /// <summary>
     /// Constructor of AdminController.
     /// </summary>
     /// <param name="uow"></param>
+    /// <param name="importService"></param>
     /// <param name="logger"></param>
-    public AdminController(IUnitOfWork uow, ILogger<DemoController> logger)
+    public AdminController(IUnitOfWork uow, IImportService importService, ILogger<DemoController> logger)
     {
-        _uow    = uow;
-        _logger = logger;
+        _uow                = uow;
+        _importService = importService;
+        _logger             = logger;
     }
 
     /// <summary>
@@ -46,4 +49,17 @@ public class AdminController : ControllerBase
         await Task.CompletedTask;
         return Ok();
     }
+    /// <summary>
+    /// Init Database.
+    /// </summary>
+    /// <returns></returns>
+    [HttpPut]
+    public async Task<ActionResult> InitDataBaseAsync()
+    {
+        await _uow.DeleteDatabaseAsync();
+        await _uow.CreateDatabaseAsync();
+        await _importService.ImportDbAsync();
+        return Ok();
+    }
+
 }

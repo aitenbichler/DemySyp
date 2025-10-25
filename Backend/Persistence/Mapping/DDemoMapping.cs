@@ -14,7 +14,7 @@ public static class DDemoMapping
         entity.ToTable("DDemo");
         entity.HasKey(l => l.Id);
 
-        entity.HasIndex(d => d.Name).IsUnique();
+        entity.HasIndex(d => new { d.MDemoId, d.Name }).IsUnique();
         entity.Property(d => d.Name).HasMaxLength(64);
 
         entity.Property(e => e.Length).AsDecimal(9, 3);

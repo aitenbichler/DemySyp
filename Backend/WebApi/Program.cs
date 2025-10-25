@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -40,7 +41,7 @@ services
             //            .RequireRealmRoles("Admin")                                                // Realm role is fetched from token
             //            .RequireResourceRolesForClient(keycloakOptions.Resource, ["myAdminRole"]) // Require Resource Roles (for this Client)
             .RequireResourceRoles("myAdminRole"); // Resource/Client role is fetched from token (any client)
-            ;
+        ;
     })
     .AddPolicy("NormalUser", builder =>
     {
@@ -92,16 +93,25 @@ services.AddSwaggerGen(c =>
     var xmlFile = "WebApi.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
     c.IncludeXmlComments(xmlPath);
-
 });
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+var sqLiteBuilder = new SqliteConnectionStringBuilder(connectionString);
+sqLiteBuilder.DataSource = Path.GetFullPath(
+    Path.Combine(
+        AppDomain.CurrentDomain.GetData(
+            "DataDirectory") as string ?? AppDomain.CurrentDomain.BaseDirectory,
+        sqLiteBuilder.DataSource
+    ));
+connectionString = sqLiteBuilder.ToString();
 
 builder.Services
     .AddDbContext<ApplicationDbContext>(options =>
         options.UseSqlite(connectionString))
     .AddScoped<IUnitOfWork, UnitOfWork>()
     .AddTransient<IMDemoRepository, MDemoRepository>()
+    .AddTransient<IImportService, ImportService>()
     ;
 
 var app = builder.Build();
