@@ -1,0 +1,42 @@
+<form class="mt-3" (ngSubmit)="onSubmit(editStationForm)" #editStationForm="ngForm">
+  
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input class="form-control" id="station_name" required type="text" [(ngModel)]="station.name" name="station_name"
+      #station_name="ngModel" />
+    <div [hidden]="station_name.valid || !triedToSubmit" class="alert alert-danger">
+      Name is required!
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="code">Code:</label>
+    <input class="form-control" id="station_code" type="text" [(ngModel)]="station.code" name="station_code"
+      #station_code="ngModel" />
+    <div [hidden]="station_code.valid || !triedToSubmit" class="alert alert-danger">
+      Code is invalid!
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="type">Type:</label>
+    <input class="form-control" id="station_type" required type="text" [(ngModel)]="station.type" name="station_type"
+      #station_type="ngModel" />
+    <div [hidden]="station_type.valid || !triedToSubmit" class="alert alert-danger">
+      Type is required!
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="stateCode">State:</label>
+    <input class="form-control" id="station_state" required type="text" [(ngModel)]="station.stateCode" name="station_state"
+      #station_state="ngModel" />
+    <div [hidden]="station_state.valid || !triedToSubmit" class="alert alert-danger">
+      State is required!
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary mt-3">Update station</button>
+  </div>
+</form>

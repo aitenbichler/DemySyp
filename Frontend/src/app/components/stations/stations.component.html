@@ -1,0 +1,27 @@
+<div class="container mt-3">
+  <h2>Railway stations</h2>
+
+  <!-- Tabelle -->
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Code</th>
+        <th>City</th>
+        <th>Lines</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let station of stations">
+        <tr>
+          <td>{{ station.stationName }}</td>
+          <td>{{ station.stationCode }}</td>
+          <td>{{ station.city }}</td>
+          <td>{{ station.lines }}</td>
+          <td><button class="btn btn-info btn-sm" (click)="showDetail(station)">Detail</button></td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>

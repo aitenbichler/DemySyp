@@ -1,0 +1,74 @@
+<div class="container mt-3">
+
+  <div>
+    <hr />
+    <dl class="row">
+      <dt class="col-sm-2">
+        Name
+      </dt>
+      <dd class="col-sm-10">
+        {{ station!.name }}
+      </dd>
+      <dt class="col-sm-2">
+        Code
+      </dt>
+      <dd class="col-sm-10">
+        {{ station!.code }}
+      </dd>
+      <dt class="col-sm-2">
+        City
+      </dt>
+      <dd class="col-sm-10">
+        {{ station!.city }}
+      </dd>
+      <dt class="col-sm-2">
+        State
+      </dt>
+      <dd class="col-sm-10">
+        {{ station!.stateCode }}
+      </dd>
+      <dt class="col-sm-2">
+        Remark
+      </dt>
+      <dd class="col-sm-10">
+        {{ station!.remark }}
+      </dd>
+    </dl>
+    <hr />
+    <td><button class="btn btn-info btn-sm" (click)="editStation(station!)">Edit</button></td>
+  </div>
+
+  <h2>Lines</h2>
+  <table class="table table-sm">
+    <tbody>
+      <ng-container *ngFor="let line of station!.lines">
+        <tr>
+          <td>{{line}}</td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+
+  <h2>Railway Companies</h2>
+  <table class="table table-sm">
+    <tbody>
+      <ng-container *ngFor="let company of station!.railwayCompanies">
+        <tr>
+          <td>{{company}}</td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>  
+
+  <h2>Infrastructure Companies</h2>
+  <table class="table table-sm">
+    <tbody>
+      <ng-container *ngFor="let company of station!.infrastructures">
+        <tr>
+          <td>{{company}}</td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>  
+
+</div>
