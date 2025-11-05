@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontendkeycloakdemo
+  name: demosypui
   namespace: student-h-aitenbichler
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: frontendkeycloakdemo
+      app: demosypui
   template:
     metadata:
       labels:
-        app: frontendkeycloakdemo
+        app: demosypui
     spec:
       containers:
-        - name: frontendkeycloakdemo
-          image: docker.io/aiten/frontendkeycloakdemo:latest
+        - name: demosypui
+          image: docker.io/aiten/demosypui:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
@@ -31,7 +31,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontendkeycloakdemo-svc
+  name: demosypui-svc
   namespace: student-h-aitenbichler
 spec:
   ports:
@@ -40,12 +40,12 @@ spec:
       protocol: TCP
       name: http
   selector:
-    app: frontendkeycloakdemo
+    app: demosypui
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: frontendkeycloakdemo-ingress
+  name: demosypui-ingress
   namespace: student-h-aitenbichler
   annotations:
     nginx.ingress.kubernetes.io/use-regex: "true"
@@ -56,10 +56,10 @@ spec:
     - host:  h-aitenbichler.cloud.htl-leonding.ac.at
       http:
         paths:
-          - path: /frontendkeycloakdemo(/|$)(.*)
+          - path: /demosypui(/|$)(.*)
             pathType: ImplementationSpecific
             backend:
               service:
-                name: frontendkeycloakdemo-svc
+                name: demosypui-svc
                 port:
                   number: 80

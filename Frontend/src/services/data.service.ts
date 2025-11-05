@@ -14,8 +14,8 @@ const httpOptions = {
 })
 export class DataService {
 
-//private apiUrl = "https://h-aitenbichler.cloud.htl-leonding.ac.at/demosypapi";
-private apiUrl = "/api";
+private apiUrl = "https://h-aitenbichler.cloud.htl-leonding.ac.at/demosypapi";
+//private apiUrl = "/api";
 // use /api to proxy requests => see proxy.conf.json 
 //                  to avoid CORS issues in development
 

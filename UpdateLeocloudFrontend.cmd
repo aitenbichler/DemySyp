@@ -1,7 +1,7 @@
-kubectl delete -n student-h-aitenbichler deployment frontendkeycloakdemo
-kubectl delete -n student-h-aitenbichler service frontendkeycloakdemo-svc
-kubectl delete -n student-h-aitenbichler ingress frontendkeycloakdemo-ingress
-kubectl delete -n student-h-aitenbichler pod -l app=frontendkeycloakdemo
+kubectl delete -n student-h-aitenbichler deployment demosypui
+kubectl delete -n student-h-aitenbichler service demosypui-svc
+kubectl delete -n student-h-aitenbichler ingress demosypui-ingress
+kubectl delete -n student-h-aitenbichler pod -l app=demosypui
 kubectl create -f leocloud-deploy-frontend.yaml
 
 
