@@ -67,7 +67,7 @@ async Task Import()
 
         int countMDemo = await uow.MDemoRepository.CountAsync();
 
-        Console.WriteLine($" {countMDemo} MDemo companies stored in DB");
+        Console.WriteLine($" {countMDemo} MDemo stored in DB");
     }
 
     Console.WriteLine($"Import done");
