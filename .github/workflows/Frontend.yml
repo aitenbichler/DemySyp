@@ -2,10 +2,8 @@
 name: Serial.Server Docker (for Raspberry/Linux)
 
 env:
-  ContainerName: cnclibserialserver              # Name of he (docker-)container
-  SolutionPath: Src                              # sub-directory of sln file location
-  SolutionName: CNCLib.sln                       # Replace with your solution name, i.e. MyWpfApp.sln.
-  AppProject: Serial.Server/Serial.Server.csproj # Replace with the path to your app project, i.e. MyWpfApp\MyWpfApp.csproj.
+  ContainerName: demosypui                       # Name of he (docker-)container
+  SolutionPath: Frontend                         # sub-directory of sln file location
 
 on:
   push:
@@ -13,7 +11,7 @@ on:
 
 jobs:
   docker:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
      
