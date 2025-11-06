@@ -37,7 +37,7 @@ jobs:
         with:
           #context: "{{defaultContext}}:Src"
           context: ./Backend
-          file: ./Backend/WebAPI/Dockerfile
+          file: ./Backend/WebApi/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.ContainerName}}:latest
           
