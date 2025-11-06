@@ -5,7 +5,7 @@ env:
   ContainerName: demosypapi        # Name of the (docker-)container
   SolutionPath: Backend            # sub-directory of sln file location
   SolutionName: DemoSyp.sln        # Replace with your solution name, i.e. MyWpfApp.sln.
-  AppProject: WebAPI/WebAPI.csproj # Replace with the path to your app project, i.e. MyWpfApp\MyWpfApp.csproj.
+  AppProject: WebApi/WebApi.csproj # Replace with the path to your app project, i.e. MyWpfApp\MyWpfApp.csproj.
 
 on:
   push:
