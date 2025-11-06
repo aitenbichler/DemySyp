@@ -40,5 +40,5 @@ jobs:
           context: ./Backend
           file: ./Backend/WebApi/Dockerfile
           push: true
-          tags: user/${{ env.ContainerName}}:latest
+          tags: ghcr.io/user/${{ env.ContainerName}}:latest
           
