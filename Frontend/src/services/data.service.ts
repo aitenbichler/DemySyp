@@ -28,9 +28,9 @@ private apiUrl = "https://h-aitenbichler.cloud.htl-leonding.ac.at/demosypapi";
     return this.http.get<MDemo>(`${this.apiUrl}/demo/${id}`);
   }
 
-  updateMDemo(game: MDemo) {
-    const url = `${this.apiUrl}/demo/${game.id}`;
-    return this.http.put(url, game);
+  updateMDemo(mdemo: MDemo) {
+    const url = `${this.apiUrl}/demo/${mdemo.id}`;
+    return this.http.put(url, mdemo);
   }
 
   addMDemo(name: string, age: number, minPlayers: number|null, maxPlayers: number|null): Observable<MDemo> {

@@ -6,14 +6,14 @@ import { MDemo } from '../../models/mdemo.model';
 import { DataService } from '../../services/data.service';
 
 @Component({
-  selector: 'app-game.detail',
-  templateUrl: './game.detail.component.html',
-  styleUrls: ['./game.detail.component.css'],
+  selector: 'app-mdemo.detail',
+  templateUrl: './mdemo.detail.component.html',
+  styleUrls: ['./mdemo.detail.component.css'],
   imports: [CommonModule],
 })
-export class GameDetailComponent {
+export class MDemoDetailComponent {
 
-  game: MDemo | undefined;
+  mdemo: MDemo | undefined;
   id: InputSignal<number | undefined> = input();
 
   private dataService = inject(DataService);
@@ -29,10 +29,10 @@ export class GameDetailComponent {
   load(): void {
     this.dataService.getMDemo(this.id()!).subscribe({
       next: data => {
-        this.game = data;
+        this.mdemo = data;
       },
       error: error => {
-        console.error('Error loading game:', error);
+        console.error('Error loading mdemo:', error);
       }
     });
   }

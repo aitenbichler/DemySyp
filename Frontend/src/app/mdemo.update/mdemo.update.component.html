@@ -1,0 +1,60 @@
+<div class="container mt-3">
+    <h2>Update MDemo</h2>
+    <button class="btn btn-primary" onclick="history.back()">Back</button>
+    <form>
+        <div class="form-group">
+            <label for="mdemoId"></label>
+            <input class="form-control" id="mdemoId" name="mdemoId" [(ngModel)]="mdemoIdVal" #mdemoId="ngModel" readonly>
+            <label for="mdemoName"></label>
+            <input class="form-control" id="mdemoName" name="mdemoName" required [(ngModel)]="mdemoNameVal" #mdemoName="ngModel" placeholder="Enter name">
+            @if(mdemoName?.invalid && (mdemoName?.touched || mdemoName?.dirty)) {
+            <div class="alert alert-danger">
+                @if (mdemoName?.errors?.['required']) {
+                    <div>Name is required</div>
+                }
+                @if (mdemoName?.errors?.['nameInvalid']) {
+                    <div>Enter a valid name</div>
+                }
+            </div>
+            }
+            <label for="mdemoAge"></label>
+            <input class="form-control" id="mdemoAge" name="mdemoAge" required [(ngModel)]="mdemoAgeVal" #mdemoAge="ngModel" placeholder="Enter age" (ngModelChange)="validateAge(mdemoAge)">
+            @if(mdemoAge?.invalid && (mdemoAge?.touched || mdemoAge?.dirty)) {
+            <div class="alert alert-danger">
+                @if (mdemoAge?.errors?.['required']) {
+                    <div>Age is required</div>
+                }
+                @else if (mdemoAge?.errors?.['ageInvalid']) {
+                    <div>Enter a valid age</div>
+                }
+            </div>
+            }
+            <label for="mdemoMinPlayer"></label>
+            <input class="form-control" id="mdemoMinPlayer" name="mdemoMinPlayer" required [(ngModel)]="mdemoMinPlayerVal" #mdemoMinPlayer="ngModel" placeholder="Enter min players" (ngModelChange)="validateMinMaxPlayers(mdemoMinPlayer, mdemoMaxPlayer)">
+            @if(mdemoMinPlayer?.invalid && (mdemoMinPlayer?.touched || mdemoMinPlayer?.dirty)) {
+            <div class="alert alert-danger">
+                @if (mdemoMinPlayer?.errors?.['minPlayerInvalid']) {
+                    <div>Enter a valid number</div>
+                }
+                @else if (mdemoMinPlayer?.errors?.['minGreaterMax']) {
+                    <div>Min Player is greater than Max Player</div>
+                }
+            </div>
+            }
+            <label for="mdemoMaxPlayer"></label>
+            <input class="form-control" id="mdemoMaxPlayer" name="mdemoMaxPlayer" required [(ngModel)]="mdemoMaxPlayerVal" #mdemoMaxPlayer="ngModel" placeholder="Enter max players" (ngModelChange)="validateMinMaxPlayers(mdemoMinPlayer, mdemoMaxPlayer)">
+            @if(mdemoMaxPlayer?.invalid && (mdemoMaxPlayer?.touched || mdemoMaxPlayer?.dirty)) {
+            <div class="alert alert-danger">
+                @if (mdemoMaxPlayer?.errors?.['maxPlayerInvalid']) {
+                    <div>Enter a valid number</div>
+                }
+                @else if (mdemoMaxPlayer?.errors?.['minGreaterMax']) {
+                    <div>Min Player is greater than Max Player</div>
+                }
+            </div>
+            }
+        </div>
+        <button [disabled]="mdemoName?.invalid || mdemoAge?.invalid || mdemoMinPlayer?.invalid || mdemoMaxPlayer?.invalid"
+            (click)="onUpdateMDemo()" class="btn btn-primary">Submit!</button>
+    </form>
+</div>

@@ -4,18 +4,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule, NgModel } from '@angular/forms';
 
 @Component({
-  selector: 'app-game-update.component',
+  selector: 'app-mdemo-update.component',
   imports: [FormsModule],
-  templateUrl: './game.update.component.html',
-  styleUrl: './game.update.component.css'
+  templateUrl: './mdemo.update.component.html',
+  styleUrl: './mdemo.update.component.css'
 })
-export class GameUpdateComponent {
+export class MDemoUpdateComponent {
 
-  protected gameIdVal: number = 0;
-  protected gameNameVal: string | null = null;
-  protected gameAgeVal: number | null = null;
-  protected gameMaxPlayerVal: number | null = null;
-  protected gameMinPlayerVal: number | null = null;
+  protected mdemoIdVal: number = 0;
+  protected mdemoNameVal: string | null = null;
+  protected mdemoAgeVal: number | null = null;
+  protected mdemoMaxPlayerVal: number | null = null;
+  protected mdemoMinPlayerVal: number | null = null;
 
   id: InputSignal<number | undefined> = input();
 
@@ -25,31 +25,31 @@ export class GameUpdateComponent {
 
   constructor() {
     effect(() => {
-      this.gameIdVal = this.id()!;
+      this.mdemoIdVal = this.id()!;
       this.load();
     });
   }
 
   load() {
-    this.dataService.getMDemo(this.gameIdVal).subscribe({
+    this.dataService.getMDemo(this.mdemoIdVal).subscribe({
       next: data => {
-        this.gameNameVal = data.name;
+        this.mdemoNameVal = data.name;
 
       },
       error: error => {
-        console.error('Error loading game:', error)
+        console.error('Error loading mdemo:', error)
       }
     })
   }
 
-  onUpdateGame() {
+  onUpdateMDemo() {
     this.dataService.updateMDemo({
-      id: this.gameIdVal,
-      name: this.gameNameVal!,
+      id: this.mdemoIdVal,
+      name: this.mdemoNameVal!,
       fDemoId: 1
     }).subscribe({
       next: () => {
-        this.router.navigate(['/games']);
+        this.router.navigate(['/mdemos']);
       },
       error: (err) => {
         console.error(err);
