@@ -84,6 +84,6 @@ jobs:
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
         with:
-          args: create -f leocloud-deploy-backend.yaml
+          args: create -f ./LeoCloud/leocloud-deploy-backend.yaml
 
           
