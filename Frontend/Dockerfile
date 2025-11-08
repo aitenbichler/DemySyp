@@ -6,6 +6,7 @@
 # =========================================
 ARG NODE_VERSION=25.0.0-alpine
 ARG NGINX_VERSION=alpine3.22
+ARG APP_PATH=demosyp
 
 # Use a lightweight Node.js image for building (customizable via ARG)
 FROM node:${NODE_VERSION} AS builder
@@ -19,12 +20,15 @@ COPY package.json package-lock.json ./
 # Install project dependencies using npm ci (ensures a clean, reproducible install)
 RUN --mount=type=cache,target=/root/.npm npm ci
 
+# Install angular CLI globally
+RUN npm install -g @angular/cli@20.3.2
+
 # Copy the rest of the application source code into the container
 COPY . .
 
 # Build the Angular application
-RUN npm run buildHTLLeonding
-
+ARG APP_PATH
+RUN ng build --configuration production --base-href /${APP_PATH}/
 
 # =========================================
 # Stage 2: Prepare Nginx to Serve Static Files

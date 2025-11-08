@@ -47,6 +47,7 @@ jobs:
           file: ./Frontend/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.ContainerName}}:latest
+          build-args: APP_PATH=demosypui
           
       - uses: actions-hub/kubectl@master
         env:

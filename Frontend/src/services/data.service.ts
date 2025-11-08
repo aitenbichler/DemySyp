@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MDemo, MDemoOverview } from '../models/mdemo.model';
+import { environment } from '../environments/environment';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -18,7 +19,10 @@ private apiUrl = "https://h-aitenbichler.cloud.htl-leonding.ac.at/demosypapi";
 // use /api to proxy requests => see proxy.conf.json 
 //                  to avoid CORS issues in development
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.apiUrl = environment.apiUrl;
+    console.log("API URL: " + this.apiUrl);
+  }
 
   getMDemos() {
     return this.http.get<MDemoOverview[]>(`${this.apiUrl}/demo`);
