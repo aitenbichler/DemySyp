@@ -25,7 +25,7 @@ using Microsoft.Extensions.Logging;
 [Route("[controller]")]
 public class DemoController : ControllerBase
 {
-    private readonly IUnitOfWork                _uow;
+    private readonly IUnitOfWork             _uow;
     private readonly ILogger<DemoController> _logger;
 
     /// <summary>
@@ -45,18 +45,20 @@ public class DemoController : ControllerBase
     /// DemoDto
     /// </summary>
     public record DemoDto(
-        int           Id,
-        string        Name,
-        string?       ForeignName,
-        IList<string> DetailNames
+        int            Id,
+        string         Name,
+        int            FDemoId,
+        string?        ForeignName,
+        IList<string>? DetailNames
     );
 
     MDemo ToEntity(DemoDto dto)
     {
         return new MDemo()
         {
-            Id   = dto.Id,
-            Name = dto.Name,
+            Id      = dto.Id,
+            Name    = dto.Name,
+            FDemoId = dto.FDemoId
         };
     }
 
@@ -70,6 +72,7 @@ public class DemoController : ControllerBase
         return new DemoDto(
             entity.Id,
             entity.Name,
+            entity.FDemoId,
             entity.FDemo?.Name ?? string.Empty,
             entity.DDemos?.Select(x => x.Name).ToList() ?? new List<string>()
         );
@@ -189,8 +192,8 @@ public class DemoController : ControllerBase
                 return NotFound();
             }
 
-            entity.Name = value.Name;
-
+            entity.Name    = value.Name;
+            entity.FDemoId = value.FDemoId;
 
             await trans.CommitTransactionAsync();
         }

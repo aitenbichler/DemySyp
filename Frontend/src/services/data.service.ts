@@ -33,6 +33,7 @@ private apiUrl = "https://h-aitenbichler.cloud.htl-leonding.ac.at/demosypapi";
   }
 
   updateMDemo(mdemo: MDemo) {
+    console.log("Updating MDemo: ", mdemo);
     const url = `${this.apiUrl}/demo/${mdemo.id}`;
     return this.http.put(url, mdemo);
   }
